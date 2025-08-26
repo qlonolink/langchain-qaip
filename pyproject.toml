@@ -12,7 +12,7 @@ dependencies = [
 ]
 name = "langchain-qai"
 version = "0.1.0"
-description = "TODO"
+description = "An integration package connecting QAI and LangChain"
 readme = "README.md"
 
 [project.urls]
