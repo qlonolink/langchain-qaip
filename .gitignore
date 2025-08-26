@@ -1,0 +1,6 @@
+# common
+.DS_Store
+
+# python
+__pycache__/
+*.py[cod]
