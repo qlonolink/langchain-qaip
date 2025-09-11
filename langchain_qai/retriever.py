@@ -11,7 +11,7 @@ from langchain_core.retrievers import BaseRetriever
 from langchain_core.utils import get_from_dict_or_env
 from pydantic import model_validator
 
-QAI_SEARCH_API_URL = "https://qai.qaip.com/v1/search"
+QAI_SEARCH_API_URL = "https://dev-marcie001.qlonolink.com/v1/search"
 USER_AGENT = "qai-langchain-retriever/1.0"
 
 
