@@ -4,7 +4,7 @@ This package contains the LangChain integrations with QAI.
 
 ## Setup
 
-Create an API Key on [QAI](https://qai.qaip.com/apikeys).
+Create an API Key on [QAI](https://qai.qaip.com/dashboard/apikeys).
 
 We can then set API key as environment variables.
 
