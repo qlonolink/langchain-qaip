@@ -1,10 +1,12 @@
+import json
 from typing import (
     Any,
     Dict,
     List,
 )
+from urllib import request
+from urllib.error import HTTPError
 
-import requests
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
@@ -40,11 +42,19 @@ class QAIPRetriever(BaseRetriever):
             if key in keywords and keywords[key]:
                 body[key] = keywords[key]
 
-        response = requests.post(url=QAIP_SEARCH_API_URL, headers=self._headers, json=body, timeout=60)
-        if response.status_code != 200:
-            raise Exception(f"Error in search request: {response}")
+        req = request.Request(
+            url=QAIP_SEARCH_API_URL,
+            data=json.dumps(body).encode("utf-8"),
+            headers=self._headers,
+            method="POST",
+        )
 
-        return response.json()
+        try:
+            with request.urlopen(req, timeout=60) as response:
+                response_data = json.loads(response.read().decode("utf-8"))
+                return response_data
+        except HTTPError as e:
+            raise Exception(f"Error in search request: HTTP {e.code} {e.reason}")
 
     def _get_relevant_documents(
         self,
